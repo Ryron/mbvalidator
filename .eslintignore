@@ -1,0 +1,6 @@
+build/*.js
+config/*.js
+src/libs/**/**/*.js
+src/assets/js/Utils.js
+src/assets/minstone/*.js
+src/assets/data/*.js
