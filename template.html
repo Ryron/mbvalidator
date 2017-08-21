@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>validator</title>
-	<link rel="stylesheet" type="text/css" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+	<link rel="stylesheet" type="text/css" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
 </head>
 <body>
 	<header class="bar bar-nav">
@@ -11,31 +11,33 @@
 </header>
 <div class="content">
   <div class="list-block">
-    <ul>
-      <!-- Text inputs -->
-      <li>
-        <div class="item-content">
-          <div class="item-media"><i class="icon icon-form-name"></i></div>
-          <div class="item-inner">
-            <div class="item-title label">姓名</div>
-            <div class="item-input">
-              <input type="text" placeholder="Your name">
+    <form id="testForm">
+      <ul>
+        <!-- Text inputs -->
+        <li>
+          <div class="item-content">
+            <div class="item-media"><i class="icon icon-form-name"></i></div>
+            <div class="item-inner">
+              <div class="item-title label">姓名</div>
+              <div class="item-input">
+                <input type="text"  placeholder="" value="" data-rules="required" data-descriptions="必填">
+              </div>
             </div>
           </div>
-        </div>
-      </li>
-      <li class="align-top">
-        <div class="item-content">
-          <div class="item-media"><i class="icon icon-form-comment"></i></div>
-          <div class="item-inner">
-            <div class="item-title label">文本域</div>
-            <div class="item-input">
-              <textarea></textarea>
+        </li>
+        <li class="align-top">
+          <div class="item-content">
+            <div class="item-media"><i class="icon icon-form-comment"></i></div>
+            <div class="item-inner">
+              <div class="item-title label">文本域</div>
+              <div class="item-input">
+                <textarea></textarea>
+              </div>
             </div>
           </div>
-        </div>
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </form>
   </div>
   <div class="content-block">
     <div class="row">
@@ -44,10 +46,10 @@
     </div>
   </div>
 </div>
-	<script src='//g.alicdn.com/sj/lib/zepto/zepto.min.js'></script>
-	<script src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js'></script>
-	<script type="text/javascript">
-		
-	</script>
+	<script src='http://g.alicdn.com/sj/lib/zepto/zepto.min.js'></script>
+	<script src='http://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js'></script>
 </body>
+<script type="text/javascript">
+  $('#testForm').validate({}, function () {}, function () {});
+</script>
 </html>

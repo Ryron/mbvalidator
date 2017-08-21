@@ -10,14 +10,21 @@ function Validator ($form, settings, success, fail) {
 	self.$fields = $fields;
 	self.settings = settings;
 	$fields.each(function () {
-		var $this = $(this);
+		let $this = $(this);
 		if ($this.is(allTypes)) {
-			// 绑定onchange
-			$(this).on('change', function (event) {
-				self.checkFiled($this, settings);
+			// 绑定onkeyup
+			$this.on('keyup', function (event) {
+				self.checkFiled($this);
 			});
-			// 绑定blur
 		};
 	});
-}
+};
+Validator.prototype.checkFiled = function ($field) {
+	let self = this;
+	let fieldValue = $.trim($field.val()) || '';         // value值
+	let rules = $field.attr("data-rules");				       // 规则
+	let descriptions = $field.attr('data-descriptions'); // value描述
+	console.log(rules);
+	console.log(typeof rules);
+};
 export default Validator;

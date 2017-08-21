@@ -8,7 +8,6 @@ $.fn.validate = function (settings, success, fail) {
 		return vt;
 	};
 	let validator = new Validator($form, settings, success, fail);
-	console.log(validator);
 	$form.data('validator', validator);
 	return validator;
 };
