@@ -10,8 +10,11 @@ const config = {
     path: path.resolve(__dirname,'./dist'),
     filename: '[name].js'
   },
+  externals: {
+    'Zepto': 'Zepto'
+  },
   resolve: {
-    extensions: ['.js', '.css'],
+    extensions: ['.js', '.css', '.vue'],
     alias: {   // 别名设置
     }
   },
@@ -34,12 +37,16 @@ const config = {
           loader: "css-loader"
         }
         ]
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/template.html'
+      template: './template.html'
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
