@@ -3,14 +3,17 @@ import _ from './utils';
 import Rules from './rules';
 let type = ['input:not([type]), input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="email"], input[type="file"], input[type="hidden"], input[type="month"], input[type="number"], input[type="password"], input[type="range"], input[type="search"], input[type="tel"], input[type="text"], input[type="time"], input[type="url"], input[type="week"], textarea', 'select', 'input[type="checkbox"], input[type="radio"]'];
 let allTypes = type.join(',');
+
 class Validator {
-	constructor ($form, settings, success, fail) {
+	constructor ($form, settings, success, error) {
 			let self = this;
 			let $fields = $form.find(allTypes);
-			// let settings = $.extend(true, Validator.defaults, settings);
+			let defaults = {
+			};
 			self.$form = $form;
 			self.$fields = $fields;
-			self.settings = settings;
+			self.settings = $.extend(true, defaults, settings);
+			self.rules = $.extend(true, Rules, self.rules);
 			$fields.each(function () {
 				let $this = $(this);
 				if ($this.is(allTypes)) {
@@ -30,6 +33,15 @@ class Validator {
 						formValid = false;
 					}
 				});
+				if (formValid) {
+					// 验证通过
+					success.call($form);
+				} else {
+					// 验证失败
+					error.call($form);
+				}
+				event.preventDefault();
+				event.stopImmediatePropagation();
 			});
 	}
 	checkFiled ($field) {
@@ -64,13 +76,13 @@ class Validator {
 						status = false;
 					};
 				} else {
-					if (typeof Rules[currentRule] === 'undefined') {
+					if (typeof this.rules[currentRule] === 'undefined') {
 						console.error('没有匹配到规则' + currentRule);
 					} else {
-						status = Rules[currentRule].rule(fieldValue, $field);
+						status = this.rules[currentRule].rule(fieldValue, $field);
 					}
 				};
-				errorMsg = Rules[currentRule] ? descriptions + ',' + Rules[currentRule].msg : '空';
+				errorMsg = this.rules[currentRule] ? descriptions + ',' + this.rules[currentRule].msg : '空';
 				if (!status && self.settings.isFirstTime) {
 					self.showMsg(errorMsg);
 					$field.focus();
@@ -82,9 +94,9 @@ class Validator {
 		return status;
 	}
 	showMsg (msg) {
-		let error = this.settings.error;
-		if (error) {
-			error(msg);
+		let prompt = this.settings.prompt;
+		if (prompt) {
+			prompt(msg);
 			return;
 		}
 		alert(msg);

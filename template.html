@@ -20,7 +20,7 @@
             <div class="item-inner">
               <div class="item-title label">必填</div>
               <div class="item-input">
-                <input type="text"  placeholder="" value="" data-rules="required" data-descriptions="用户名">
+                <input type="text"  placeholder="" value="" data-rules="required;abc" data-descriptions="用户名">
               </div>
             </div>
           </div>
@@ -40,7 +40,7 @@
   </div>
   <div class="content-block">
     <div class="row">
-      <div class="col-50"><a href="#" class="button button-big button-fill button-danger">取消</a></div>
+      <div class="col-50"><a href="#" class="button button-fill button-danger">取消</a></div>
       <div class="col-50"><input class="button button-fill" type="submit" name="" value="submit提交">
       </div>
     </div>
@@ -51,7 +51,24 @@
 	<script src='http://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js'></script>
 </body>
 <script type="text/javascript">
-  $('#testForm').validate({}, function () {}, function () {});
+  // $.validateExtend({
+  //   abc: {
+  //     msg: '111',
+  //     rule: function () {
+  //       alert(111);
+  //       return false;
+  //     }
+  //   }
+  // });
+  $('#testForm').validate({
+    prompt: function (msg) {
+      $.alert(msg);
+    }
+  }, function () {
+    console.log('success');
+  }, function () {
+    console.log('error');
+  });
   function sub () {
     $('#testForm').submit();
   }
