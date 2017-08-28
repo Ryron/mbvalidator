@@ -10,46 +10,53 @@
   <h1 class='title'>表单</h1>
 </header>
 <div class="content">
+  <form id="testForm">
   <div class="list-block">
-    <form id="testForm">
       <ul>
         <!-- Text inputs -->
         <li>
           <div class="item-content">
             <div class="item-media"><i class="icon icon-form-name"></i></div>
             <div class="item-inner">
-              <div class="item-title label">姓名</div>
+              <div class="item-title label">必填</div>
               <div class="item-input">
-                <input type="text"  placeholder="" value="" data-rules="required" data-descriptions="必填">
+                <input type="text"  placeholder="" value="" data-rules="required" data-descriptions="用户名">
               </div>
             </div>
           </div>
         </li>
-        <li class="align-top">
+        <li>
           <div class="item-content">
-            <div class="item-media"><i class="icon icon-form-comment"></i></div>
+            <div class="item-media"><i class="icon icon-form-name"></i></div>
             <div class="item-inner">
-              <div class="item-title label">文本域</div>
+              <div class="item-title label">手机号码</div>
               <div class="item-input">
-                <textarea></textarea>
+                <input type="text"  placeholder="" value="" data-rules="required;mobilephone" data-descriptions="手机号码">
               </div>
             </div>
           </div>
         </li>
       </ul>
-    </form>
   </div>
   <div class="content-block">
     <div class="row">
       <div class="col-50"><a href="#" class="button button-big button-fill button-danger">取消</a></div>
-      <div class="col-50"><a href="#" class="button button-big button-fill button-success">提交</a></div>
+      <div class="col-50"><input class="button button-fill" type="submit" name="" value="submit提交">
+      </div>
     </div>
   </div>
+  </form>
 </div>
 	<script src='http://g.alicdn.com/sj/lib/zepto/zepto.min.js'></script>
 	<script src='http://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js'></script>
 </body>
 <script type="text/javascript">
   $('#testForm').validate({}, function () {}, function () {});
+  function sub () {
+    $('#testForm').submit();
+  }
+  // $('#testForm').on('submit', function () {
+  //   alert(111);
+  // });
 </script>
 </html>
