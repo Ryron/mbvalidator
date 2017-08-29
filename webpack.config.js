@@ -1,6 +1,7 @@
 var webpack = require('webpack')
 var path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -8,7 +9,7 @@ const config = {
   entry: ['./src/index.js'],
   output: {
     path: path.resolve(__dirname,'./dist'),
-    filename: '[name].js'
+    filename: 'validator.js'
   },
   externals: {
     'Zepto': 'Zepto'
@@ -49,6 +50,11 @@ const config = {
       template: './template.html'
     }),
     new webpack.HotModuleReplacementPlugin()
+    // new UglifyJSPlugin({
+    //   compress: {
+    //     warnings: true
+    //   }
+    // })
   ],
   devServer: {  
     contentBase: path.join(__dirname, "dist"),

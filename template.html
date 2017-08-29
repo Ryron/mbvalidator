@@ -51,15 +51,14 @@
 	<script src='http://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js'></script>
 </body>
 <script type="text/javascript">
-  // $.validateExtend({
-  //   abc: {
-  //     msg: '111',
-  //     rule: function () {
-  //       alert(111);
-  //       return false;
-  //     }
-  //   }
-  // });
+  $.validateExtend({
+    abc: {
+      msg: '必须是abc',
+      rule: function (val) {
+        return val === 'abc';
+      }
+    }
+  });
   $('#testForm').validate({
     prompt: function (msg) {
       $.alert(msg);
@@ -69,11 +68,5 @@
   }, function () {
     console.log('error');
   });
-  function sub () {
-    $('#testForm').submit();
-  }
-  // $('#testForm').on('submit', function () {
-  //   alert(111);
-  // });
 </script>
 </html>

@@ -5,16 +5,16 @@ let type = ['input:not([type]), input[type="color"], input[type="date"], input[t
 let allTypes = type.join(',');
 
 class Validator {
-	constructor ($form, settings, success, error) {
+	constructor (form, settings, success, error) {
 			let self = this;
-			let $fields = $form.find(allTypes);
+			let fields = form.find(allTypes);
 			let defaults = {
 			};
-			self.$form = $form;
-			self.$fields = $fields;
+			self.form = form;
+			self.fields = fields;
 			self.settings = $.extend(true, defaults, settings);
-			self.rules = $.extend(true, Rules, self.rules);
-			$fields.each(function () {
+			self.rules = $.extend(true, Rules, Validator.rules);
+			fields.each(function () {
 				let $this = $(this);
 				if ($this.is(allTypes)) {
 					// 绑定onkeyup
@@ -23,10 +23,10 @@ class Validator {
 					// });
 				};
 			});
-			$form.on('submit', function (event) {
+			form.on('submit', function (event) {
 				let formValid = true;
 				self.settings.isFirstTime = true;
-				$fields.each(function () {
+				fields.each(function () {
 					let $this = $(this);
 					let status = self.checkFiled($this);
 					if (!status) {
@@ -35,21 +35,21 @@ class Validator {
 				});
 				if (formValid) {
 					// 验证通过
-					success.call($form);
+					success.call(form);
 				} else {
 					// 验证失败
-					error.call($form);
+					error.call(form);
 				}
 				event.preventDefault();
 				event.stopImmediatePropagation();
 			});
 	}
-	checkFiled ($field) {
+	checkFiled (field) {
 		let self = this;
 		let status = true;
-		let fieldValue = $field.val().trim() || '';          // value值
-		let fieldRules = $field.attr('data-rules').trim();	 // 规则
-		let descriptions = $field.attr('data-descriptions'); // value描述
+		let fieldValue = field.val().trim() || '';          // value值
+		let fieldRules = field.attr('data-rules').trim();	 // 规则
+		let descriptions = field.attr('data-descriptions'); // value描述
 		let errorMsg = '';                                   // 错误信息提示
 		if (!_.isNull(fieldRules)) {
 			let fieldRulesAry = fieldRules.split(';');
@@ -63,14 +63,14 @@ class Validator {
 				let currentRule = fieldRulesAry[index].trim();
 				// 必填
 				if (currentRule === '') continue;
-				if (currentRule === 'required' && $field.is(type[2])) {
+				if (currentRule === 'required' && field.is(type[2])) {
 					// 单选、复选
-					if (self.$form.find('[name="' + $field.prop('name') + '"]:checked').length === 0) {
+					if (self.form.find('[name="' + field.prop('name') + '"]:checked').length === 0) {
 						status = false;
 					} else {
 						status = true;
 					};
-				} else if (currentRule === 'required' && $field.is(type[1])) {
+				} else if (currentRule === 'required' && field.is(type[1])) {
 					// select
 					if (fieldValue === '' || fieldValue === '请选择') {
 						status = false;
@@ -79,13 +79,13 @@ class Validator {
 					if (typeof this.rules[currentRule] === 'undefined') {
 						console.error('没有匹配到规则' + currentRule);
 					} else {
-						status = this.rules[currentRule].rule(fieldValue, $field);
+						status = this.rules[currentRule].rule(fieldValue, field);
 					}
 				};
 				errorMsg = this.rules[currentRule] ? descriptions + ',' + this.rules[currentRule].msg : '空';
 				if (!status && self.settings.isFirstTime) {
 					self.showMsg(errorMsg);
-					$field.focus();
+					field.focus();
 					self.settings.isFirstTime = false;
 				}
 			}
