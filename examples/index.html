@@ -4,6 +4,11 @@
 	<meta charset="UTF-8">
 	<title>validator</title>
 	<link rel="stylesheet" type="text/css" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+  <style type="text/css">
+    .color-error{
+      border: 1px solid red !important;
+    }
+  </style>
 </head>
 <body>
 	<header class="bar bar-nav">
@@ -20,7 +25,7 @@
             <div class="item-inner">
               <div class="item-title label">必填</div>
               <div class="item-input">
-                <input type="text"  placeholder="" value="" data-rules="required" data-descriptions="用户名">
+                <input type="text"  placeholder="" value="" data-rules="required;" data-descriptions="用户名">
               </div>
             </div>
           </div>
@@ -35,6 +40,17 @@
               </div>
             </div>
           </div>
+          <li>
+          <div class="item-content">
+            <div class="item-media"><i class="icon icon-form-name"></i></div>
+            <div class="item-inner">
+              <div class="item-title label">邮箱</div>
+              <div class="item-input">
+                <input type="text"  placeholder="" value="" data-rules="required;email" data-descriptions="邮箱">
+              </div>
+            </div>
+          </div>
+        </li>
         </li>
       </ul>
   </div>
@@ -49,17 +65,17 @@
 </div>
 	<script src='http://g.alicdn.com/sj/lib/zepto/zepto.min.js'></script>
 	<script src='http://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js'></script>
-  <script src="../assets/validator.js"></script>
+  <script src="../assets/validator.js?123"></script>
+  <script type="text/javascript">
+    $('#testForm').validate({
+      prompt: function (msg) {
+        $.alert(msg);
+      }
+    }, function () {
+      console.log('success');
+    }, function () {
+      console.log('error');
+    });
+  </script>
 </body>
-<script type="text/javascript">
-  $('#testForm').validate({
-    prompt: function (msg) {
-      $.alert(msg);
-    }
-  }, function () {
-    console.log('success');
-  }, function () {
-    console.log('error');
-  });
-</script>
 </html>
