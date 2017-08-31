@@ -9,7 +9,8 @@ const config = {
   entry: ['./src/index.js'],
   output: {
     path: path.resolve(__dirname,'./dist'),
-    filename: 'validator.js'
+    filename: 'validator.js',
+    publicPath:"/assets/"
   },
   externals: {
     'Zepto': 'Zepto'
@@ -46,20 +47,8 @@ const config = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './template.html'
-    }),
-    new webpack.HotModuleReplacementPlugin()
-    // new UglifyJSPlugin({
-    //   compress: {
-    //     warnings: true
-    //   }
-    // })
   ],
-  devServer: {  
-    contentBase: path.join(__dirname, "dist"),
-    compress: true,
-    port: 8080
+  devServer: {
   }
 }
 

@@ -13,3 +13,11 @@ validator
 │   ├── package.json       node依赖包信息
 │   ├── REAMDE.md          自述文件
 ```
+## 访问
+```
+npm install 
+
+npm run dev
+
+http://localhost:8080/examples/xxx.html
+```
