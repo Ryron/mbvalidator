@@ -88,11 +88,11 @@ class Validator {
 				self.borderColor(field, status);
 				if (!status) {
 					// 验证错误
-					self.settings.isFirstTime = false;
 					if (self.settings.isFirstTime) {
 						self.showMsg(errorMsg);
 						field.focus();
 					}
+					self.settings.isFirstTime = false;
 					return status; // 退出当前field验证
 				}
 			}

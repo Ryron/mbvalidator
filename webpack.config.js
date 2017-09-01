@@ -47,6 +47,15 @@ const config = {
     ]
   },
   plugins: [
+//     new webpack.optimize.UglifyJsPlugin({
+//   sourceMap: false,
+//   mangle: false
+// })
+    // new webpack.optimize.UglifyJsPlugin({
+    //         compress:{
+    //             warnings:false
+    //         }
+    //     })
   ],
   devServer: {
   }
