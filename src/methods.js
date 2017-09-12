@@ -43,7 +43,7 @@ export function checkFiled (field) {
 				}
 			};
 			errorMsg = this.rules[currentRule] ? descriptions + ',' + this.rules[currentRule].msg : '空';
-			borderColor(field, status);
+			borderColor.call(self, field, status);
 			if (!status) {
 				// 验证错误
 				if (self.settings.isFirstTime) {
