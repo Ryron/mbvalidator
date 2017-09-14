@@ -7,7 +7,7 @@ const config = {
   entry: ['./src/index.js'],
   output: {
     path: path.resolve(__dirname,'./dist'),
-    filename: 'validator.js',
+    filename: 'mbValidator.js',
     publicPath:"/assets/"
   },
   externals: {

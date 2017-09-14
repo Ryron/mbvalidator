@@ -42,7 +42,7 @@ export function verifyFiled (field, isShowDialog) {
 				}
 			};
 			let errorMsg = self.rules[currentRule] ? descriptions + ',' + self.rules[currentRule].msg : '空';
-			borderColor.call(self, field, status);
+			errorClass.call(self, field, status);
 			if (!status) {
 				// 验证错误
 				if (self.settings.isFirstTime) {
@@ -69,7 +69,7 @@ export function showDialog (msg) {
 }
 
 // 边框提示
-export function borderColor (field, status) {
+export function errorClass (field, status) {
 	if (status) {
 		field.removeClass('color-error');
 	} else {

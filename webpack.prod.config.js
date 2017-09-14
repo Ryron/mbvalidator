@@ -6,7 +6,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 var config = merge(baseWebpackConfig, {
   output: {
-    filename: 'validator.min.js'
+    filename: 'mbValidator.min.js'
   },
 	plugins: [
 		new webpack.optimize.UglifyJsPlugin({

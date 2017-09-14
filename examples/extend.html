@@ -18,20 +18,9 @@
           <div class="item-content">
             <div class="item-media"><i class="icon icon-form-name"></i></div>
             <div class="item-inner">
-              <div class="item-title label">必填</div>
+              <div class="item-title label">用户名（必填，且是abc）</div>
               <div class="item-input">
                 <input type="text"  placeholder="" value="" data-rules="required;abc" data-descriptions="用户名">
-              </div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="item-content">
-            <div class="item-media"><i class="icon icon-form-name"></i></div>
-            <div class="item-inner">
-              <div class="item-title label">手机号码</div>
-              <div class="item-input">
-                <input type="text"  placeholder="" value="" data-rules="required;mobilephone" data-descriptions="手机号码">
               </div>
             </div>
           </div>
@@ -49,7 +38,7 @@
 </div>
 	<script src='http://g.alicdn.com/sj/lib/zepto/zepto.min.js'></script>
 	<script src='http://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js'></script>
-  <script src="../assets/validator.js"></script>
+  <script src="../assets/mbValidator.js"></script>
 </body>
 <script type="text/javascript">
   $.validateExtend({
@@ -60,7 +49,7 @@
       }
     }
   });
-  $('#testForm').validate({
+  $('#testForm').mbValidate({
     prompt: function (msg) {
       $.alert(msg);
     }

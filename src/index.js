@@ -1,6 +1,6 @@
 import $ from 'Zepto';
 import Validator from './Validator';
-$.fn.validate = function (settings, success, error) {
+$.fn.mbValidate = function (settings, success, error) {
 	let form = $(this);
 	let vt = form.data('validator');
 	// 检测是否已经创建

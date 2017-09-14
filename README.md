@@ -21,7 +21,7 @@ http://localhost:8080/examples/xxx.html
 引入zepto和validator，验证内容必须包含在`form`标签内容。
 
 ```
-var form = $('#testForm').validate({
+var form = $('#testForm').mbValidate({
   prompt: function (msg) {
     $.alert(msg);
   }
@@ -32,9 +32,12 @@ var form = $('#testForm').validate({
 });
 ```
 
-`$('#formId').validate(options, success, error)`
+`$('#formId').mbValidate(options, success, error)`
 
 validate方法接受3个参数options、success、error。
 
-| 参数        |            | Cool  |
-| ------------- |:-------------:| -----:|
+| 参数        |      说明      | 备注  |
+| ------------- |:-------------:| -----|
+| options | 配置，prompt 弹窗方法 |    |
+| success | 验证成功          |    |
+| error | 验证失败 | 默认给验证失败的表单添加class color-error |
