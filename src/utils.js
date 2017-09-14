@@ -3,7 +3,6 @@ let _ = {
 		return value === null;
 	},
 	noop: function () {
-		return function () {};
 	}
 };
 
