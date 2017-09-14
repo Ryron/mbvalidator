@@ -89,7 +89,7 @@
   </div>
   <div class="content-block">
     <div class="row">
-      <div class="col-50"><a href="#" class="button button-fill button-danger">取消</a></div>
+      <div class="col-50"><a href="#" onclick="sub()" class="button button-fill button-primary">JS方法提交</a></div>
       <div class="col-50"><input class="button button-fill" type="submit" name="" value="submit提交">
       </div>
     </div>
@@ -98,9 +98,9 @@
 </div>
 	<script src='../static/zepto/zepto.min.js'></script>
 	<script src='../static/sui/js/sm.min.js'></script>
-  <script src="../assets/validator.js?123"></script>
+  <script src="../assets/validator.js?"></script>
   <script type="text/javascript">
-    $('#testForm').validate({
+    var form = $('#testForm').validate({
       prompt: function (msg) {
         $.alert(msg);
       }
@@ -109,6 +109,9 @@
     }, function () {
       console.log('error');
     });
+    function sub() {
+      form.verifyForm();
+    }
   </script>
 </body>
 </html>

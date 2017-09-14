@@ -1,13 +1,12 @@
 // Validator 方法集合
 import _ from './utils';
 import {type} from './types';
-export function checkFiled (field) {
+export function verifyFiled (field, isShowDialog) {
 	let self = this;
 	let status = true;
 	let fieldValue = field.val().trim() || '';          // value值
-	let fieldRules = field.attr('data-rules').trim();	 // 规则
+	let fieldRules = field.attr('data-rules') ? field.attr('data-rules').trim() : '';	 // 规则
 	let descriptions = field.attr('data-descriptions'); // value描述
-	let errorMsg = '';                                   // 错误信息提示
 	if (!_.isNull(fieldRules)) {
 		let fieldRulesAry = fieldRules.split(';');
 		let isRequired = fieldRulesAry.indexOf('required') >= 0; // 是否必填
@@ -35,19 +34,19 @@ export function checkFiled (field) {
 				};
 			} else {
 				// 其他
-				if (typeof this.rules[currentRule] === 'undefined') {
+				if (typeof self.rules[currentRule] === 'undefined') {
 					// 匹配不到规则
 					console.error('没有匹配到规则' + currentRule);
 				} else {
-					status = this.rules[currentRule].rule(fieldValue, field);
+					status = self.rules[currentRule].rule(fieldValue, field);
 				}
 			};
-			errorMsg = this.rules[currentRule] ? descriptions + ',' + this.rules[currentRule].msg : '空';
+			let errorMsg = self.rules[currentRule] ? descriptions + ',' + self.rules[currentRule].msg : '空';
 			borderColor.call(self, field, status);
 			if (!status) {
 				// 验证错误
 				if (self.settings.isFirstTime) {
-					showMsg.call(self, errorMsg);
+					if (isShowDialog) showDialog.call(self, errorMsg);
 					field.focus();
 				}
 				self.settings.isFirstTime = false;
@@ -59,7 +58,7 @@ export function checkFiled (field) {
 }
 
 // 信息提示
-export function showMsg (msg) {
+export function showDialog (msg) {
 	let prompt = this.settings.prompt;
 	if (prompt) {
 		prompt(msg);

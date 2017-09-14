@@ -1,7 +1,5 @@
 var webpack = require('webpack')
 var path = require('path')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -24,9 +22,14 @@ const config = {
     rules: [
       {
         test:/\.js$/,
-        use: [
-          'babel-loader',
-          'eslint-loader'
+        use: [{
+          loader: 'babel-loader',
+          query: {
+              'presets': ['es2015'],
+          }
+        },{
+          loader: 'eslint-loader'
+        }
         ]
       },
       {
@@ -46,17 +49,6 @@ const config = {
       }
     ]
   },
-  plugins: [
-//     new webpack.optimize.UglifyJsPlugin({
-//   sourceMap: false,
-//   mangle: false
-// })
-    // new webpack.optimize.UglifyJsPlugin({
-    //         compress:{
-    //             warnings:false
-    //         }
-    //     })
-  ],
   devServer: {
   }
 }

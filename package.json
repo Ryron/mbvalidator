@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --inline --progress --watch",
-    "build": "webpack",
+    "build": "node build.js",
     "dev": "webpack-dev-server"
   },
   "repository": {
@@ -44,6 +44,7 @@
     "style-loader": "^0.13.1",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "webpack": "^3.5.1",
-    "webpack-dev-server": "^1.16.3"
+    "webpack-dev-server": "^1.16.3",
+    "webpack-merge": "^4.1.0"
   }
 }
