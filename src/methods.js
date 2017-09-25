@@ -11,7 +11,7 @@ export function verifyFiled (field, isShowDialog) {
 		let fieldRulesAry = fieldRules.split(';');
 		let isRequired = fieldRulesAry.indexOf('required') >= 0; // 是否必填
 		// 不必填且空值不需要校验
-		if (!isRequired && fieldRules === '') {
+		if (!isRequired && fieldValue === '') {
 			return status;
 		};
 		// 其他规则
